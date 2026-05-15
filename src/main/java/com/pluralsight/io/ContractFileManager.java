@@ -18,7 +18,7 @@ public class ContractFileManager {
         try(PrintWriter writer = new PrintWriter(new FileWriter(FILENAME, true))) {
             Path path = Path.of(FILENAME);
 
-            if(!Files.exists(path)) {
+            if(Files.exists(path) && Files.size(path) > 0) {
                 writer.println();
             }
 
@@ -59,8 +59,6 @@ public class ContractFileManager {
                         contract.getTotalMonthlyPayment(contract.getVehicle())
                         );
             }
-
-            writer.println();
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
