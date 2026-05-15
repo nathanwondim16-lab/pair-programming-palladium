@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class DealershipApplication
 {
+
+
     Dealership dealership;
 
     public DealershipApplication(Dealership dealership)
@@ -97,17 +99,39 @@ public class DealershipApplication
 
     private void searchByColor()
     {
-        UserInterface.displayMessage("search by color");
+        UserInterface.displayMessage("\nSearch by color");
+        UserInterface.displayMessage("------------------------------------");
+
+        String color = UserInterface.getUserInput("Color: ");
+
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByColor(color);
+
+        UserInterface.displayVehicles(vehicles);
     }
 
     private void searchByMileage()
     {
-        UserInterface.displayMessage("search by mileage");
+        UserInterface.displayMessage("\nSearch by mileage");
+        UserInterface.displayMessage("------------------------------------");
+
+        int minMileage = UserInterface.getUserInputInt("Minimum Mileage: ");
+        int maxMileage = UserInterface.getUserInputInt("Maximum Mileage: ");
+
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByMileage(minMileage, maxMileage);
+
+        UserInterface.displayVehicles(vehicles);
     }
 
     private void searchByVehicleType()
     {
-        UserInterface.displayMessage("search by vehicle type");
+        UserInterface.displayMessage("\nSearch by vehicle type");
+        UserInterface.displayMessage("------------------------------------");
+
+        String vehicleType = UserInterface.getUserInput("Vehicle Type: ");
+
+        ArrayList<Vehicle> vehicles = dealership.getVehiclesByType(vehicleType);
+
+        UserInterface.displayVehicles(vehicles);
     }
 
     private void addVehicle()

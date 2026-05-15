@@ -10,7 +10,6 @@ public abstract class Contract {
     private String customerName;
     private String email;
     private Vehicle vehicle;
-    private ContractType contractType;
 
 
     public Contract(LocalDate date, String customerName, String email, Vehicle vehicle) {
