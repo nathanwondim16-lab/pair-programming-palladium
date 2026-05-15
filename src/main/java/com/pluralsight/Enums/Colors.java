@@ -1,4 +1,4 @@
-package com.pluralsight.ui;
+package com.pluralsight.Enums;
 
 /**
  * Represents ANSI RGB colors used for styling console output.

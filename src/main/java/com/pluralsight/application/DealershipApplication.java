@@ -1,11 +1,9 @@
 package com.pluralsight.application;
 
+import com.pluralsight.io.ContractFileManager;
 import com.pluralsight.io.DealershipFileManager;
-import com.pluralsight.models.Contract;
-import com.pluralsight.models.Dealership;
-import com.pluralsight.models.SalesContract;
-import com.pluralsight.models.Vehicle;
-import com.pluralsight.ui.Colors;
+import com.pluralsight.models.*;
+import com.pluralsight.Enums.Colors;
 import com.pluralsight.ui.UserInterface;
 
 import java.time.LocalDate;
@@ -51,6 +49,9 @@ public class DealershipApplication
                     break;
                 case 8:
                     sellVehicle();
+                    break;
+                case 9:
+                    leaseVehicle();
                     break;
                 case 0:
                     UserInterface.endApplication();
@@ -136,12 +137,11 @@ public class DealershipApplication
     }
 
     private void sellVehicle() {
-
         String customerName = UserInterface.getUserInput("Enter your name: ");
         String emailAddress = UserInterface.getUserInput("Enter your email: ");
         int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number");
         Vehicle vehicle = dealership.getVehicleByVin(VIN);
-        UserInterface.displayMessage("Vehicle: " + vehicle.toString());
+
         String userChoice = UserInterface.getUserInput("Do you want to finance the vehicle?");
 
         SalesContract salesContract = new SalesContract(LocalDate.now(), customerName, emailAddress, vehicle,
@@ -149,5 +149,19 @@ public class DealershipApplication
 
         UserInterface.displayMessage(String.valueOf(salesContract.getTotalPrice(vehicle)));
         UserInterface.displayMessage(String.valueOf(salesContract.getTotalMonthlyPayment(vehicle)));
+
+        ContractFileManager.saveContract(salesContract);
+    }
+
+    private void leaseVehicle() {
+        String customerName = UserInterface.getUserInput("Enter your name: ");
+        String emailAddress = UserInterface.getUserInput("Enter your email: ");
+        int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number");
+        Vehicle vehicle = dealership.getVehicleByVin(VIN);
+
+        LeaseContract leaseContract = new LeaseContract(LocalDate.now(), customerName, emailAddress,
+                vehicle, .50, .07);
+
+        ContractFileManager.saveContract(leaseContract);
     }
 }
