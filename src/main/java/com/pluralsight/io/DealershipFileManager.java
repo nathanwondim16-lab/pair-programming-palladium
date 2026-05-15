@@ -37,11 +37,8 @@ public class DealershipFileManager
 
     public static void addVehicle(Vehicle vehicle)
     {
-
-        try(FileWriter fileWriter = new FileWriter("data/inventory.csv",true);
-            PrintWriter writer = new PrintWriter(fileWriter))
-        {
-            writer.printf("%d|%d|%s|%s|%s|%s|%d|%f.2\n",
+        try(PrintWriter writer = new PrintWriter(new FileWriter("data/inventory.csv", true))) {
+            writer.printf("%n%d|%d|%s|%s|%s|%s|%d|%f.2",
                     vehicle.getVin(),
                     vehicle.getYear(),
                     vehicle.getMake(),
@@ -51,10 +48,9 @@ public class DealershipFileManager
                     vehicle.getOdometer(),
                     vehicle.getPrice()
                     );
-        }
-        catch(IOException e)
-        {
-            //swallow
+
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
     }
 
@@ -81,14 +77,14 @@ public class DealershipFileManager
         try(FileWriter fileWriter = new FileWriter("data/inventory.csv");
             PrintWriter writer = new PrintWriter(fileWriter))
         {
-            writer.printf("%s|%s|%s\n",
+            writer.printf("%n%n%s|%s|%s",
                     dealership.getName(),
                     dealership.getAddress(),
                     dealership.getPhone());
 
             for(Vehicle vehicle : dealership.getAllVehicles())
             {
-                writer.printf("%d|%d|%s|%s|%s|%s|%d|%f.2\n",
+                writer.printf("%d|%d|%s|%s|%s|%s|%d|%f.2%n",
                         vehicle.getVin(),
                         vehicle.getYear(),
                         vehicle.getMake(),
@@ -103,7 +99,7 @@ public class DealershipFileManager
         }
         catch(IOException e)
         {
-            //swallow
+            System.err.println(e.getMessage());
         }
 
     }

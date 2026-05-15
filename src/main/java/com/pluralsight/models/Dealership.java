@@ -93,6 +93,10 @@ public class Dealership
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    public Vehicle getVehicleByVin(int VIN) {
+        return inventory.stream().filter(vehicle -> vehicle.getVin() == VIN).findFirst().orElse(null);
+    }
+
     public ArrayList<Vehicle> getAllVehicles()
     {
         return inventory;

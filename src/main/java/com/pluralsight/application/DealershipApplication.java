@@ -1,9 +1,14 @@
 package com.pluralsight.application;
 
+import com.pluralsight.io.DealershipFileManager;
+import com.pluralsight.models.Contract;
 import com.pluralsight.models.Dealership;
+import com.pluralsight.models.SalesContract;
 import com.pluralsight.models.Vehicle;
+import com.pluralsight.ui.Colors;
 import com.pluralsight.ui.UserInterface;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DealershipApplication
@@ -43,6 +48,9 @@ public class DealershipApplication
                     break;
                 case 7:
                     addVehicle();
+                    break;
+                case 8:
+                    sellVehicle();
                     break;
                 case 0:
                     UserInterface.endApplication();
@@ -103,6 +111,43 @@ public class DealershipApplication
 
     private void addVehicle()
     {
-        UserInterface.displayMessage("build add vehicle logic");
+
+        int vin = UserInterface.getUserInputInt("\n\nEnter vehicle VIN number: ");
+        int year = UserInterface.getUserInputInt("Enter vehicle year: ");
+        String make = UserInterface.getUserInput("Enter Make: ");
+        String model = UserInterface.getUserInput("Enter model: ");
+        String vehicleType = UserInterface.getUserInput("Enter vehicle type: ");
+        String color = UserInterface.getUserInput("Enter color: ");
+        int odometer = UserInterface.getUserInputInt("Enter miles: ");
+        double price = UserInterface.getUserInputDouble("Enter price: ");
+        DealershipFileManager.addVehicle(new Vehicle(
+                vin,
+                year,
+                make,
+                model,
+                vehicleType,
+                color,
+                odometer,
+                price
+                )
+        );
+
+        UserInterface.displayMessage(Colors.GREEN.colorize("\nVEHICLE ADDED"));
+    }
+
+    private void sellVehicle() {
+
+        String customerName = UserInterface.getUserInput("Enter your name: ");
+        String emailAddress = UserInterface.getUserInput("Enter your email: ");
+        int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number");
+        Vehicle vehicle = dealership.getVehicleByVin(VIN);
+        UserInterface.displayMessage("Vehicle: " + vehicle.toString());
+        String userChoice = UserInterface.getUserInput("Do you want to finance the vehicle?");
+
+        SalesContract salesContract = new SalesContract(LocalDate.now(), customerName, emailAddress, vehicle,
+                .05, 100, userChoice.equalsIgnoreCase("yes"));
+
+        UserInterface.displayMessage(String.valueOf(salesContract.getTotalPrice(vehicle)));
+        UserInterface.displayMessage(String.valueOf(salesContract.getTotalMonthlyPayment(vehicle)));
     }
 }

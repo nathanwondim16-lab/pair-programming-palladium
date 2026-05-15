@@ -26,6 +26,9 @@ public class UserInterface
         System.out.println("5. Search by Mileage");
         System.out.println("6. Search by Vehicle Types");
         System.out.println(ColorCodes.RED + "7. Add a vehicle" + ColorCodes.RESET);
+        System.out.println("8. Buy Vehicle");
+        System.out.println("9. Lease Vehicle");
+
         System.out.println("0. Exit");
 
         System.out.println();
