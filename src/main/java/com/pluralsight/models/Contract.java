@@ -57,7 +57,7 @@ public abstract class Contract {
         this.email = email;
     }
 
-    public abstract double getTotalPrice(Vehicle vehicle);
+    public abstract double getTotalPrice();
 
-    public abstract double getTotalMonthlyPayment(Vehicle vehicle);
+    public abstract double getTotalMonthlyPayment();
 }

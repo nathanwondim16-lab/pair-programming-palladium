@@ -17,14 +17,17 @@ public class LeaseContract extends Contract {
     }
 
     @Override
-    public double getTotalPrice(Vehicle vehicle) {
+    public double getTotalPrice() {
+        Vehicle vehicle = super.getVehicle();
+
         double price = vehicle.getPrice() * (leaseFee + expectedEndingValue);
         return vehicle.getPrice() - price;
     }
 
     @Override
-    public double getTotalMonthlyPayment(Vehicle vehicle) {
-        double price = getTotalPrice(vehicle);
+    public double getTotalMonthlyPayment() {
+
+        double price = getTotalPrice();
         int months = 36;
 
         double monthlyRate = .04 / 12;

@@ -38,20 +38,20 @@ public class ContractFileManager {
                     );
 
             if(contract instanceof SalesContract) {
-                writer.printf("%.0f|%.0f|%.0f|%.2f|%s|%.2f",
+                writer.printf("%.2f|%.2f|%.2f|%.2f|%s|%.2f",
                         ((SalesContract) contract).getSalesTaxAmount(),
                         ((SalesContract) contract).getRecordingFee(),
                         ((SalesContract) contract).getProcessingFee(),
-                        contract.getTotalPrice(contract.getVehicle()),
+                        contract.getTotalPrice(),
                         ((SalesContract) contract).isFinance() ? "YES" : "NO",
-                        contract.getTotalMonthlyPayment(contract.getVehicle())
+                        contract.getTotalMonthlyPayment()
                         );
             } else {
-                writer.printf("%.0f|%.0f|%.2f|%.2f",
+                writer.printf("%.2f|%.2f|%.2f|%.2f",
                         ((LeaseContract) contract).getExpectedEndingValue(),
                         ((LeaseContract) contract).getLeaseFee(),
-                        contract.getTotalPrice(contract.getVehicle()),
-                        contract.getTotalMonthlyPayment(contract.getVehicle())
+                        contract.getTotalPrice(),
+                        contract.getTotalMonthlyPayment()
                         );
             }
 

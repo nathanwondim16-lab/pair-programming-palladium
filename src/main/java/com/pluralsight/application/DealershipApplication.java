@@ -164,16 +164,13 @@ public class DealershipApplication
     private void sellVehicle() {
         String customerName = UserInterface.getUserInput("Enter your name: ");
         String emailAddress = UserInterface.getUserInput("Enter your email: ");
-        int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number");
+        int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number: ");
         Vehicle vehicle = dealership.getVehicleByVin(VIN);
 
         String userChoice = UserInterface.getUserInput("Do you want to finance the vehicle?");
 
         SalesContract salesContract = new SalesContract(LocalDate.now(), customerName, emailAddress, vehicle,
                 ContractType.SALE, .05, 100, userChoice.equalsIgnoreCase("yes"));
-
-        UserInterface.displayMessage(String.valueOf(salesContract.getTotalPrice(vehicle)));
-        UserInterface.displayMessage(String.valueOf(salesContract.getTotalMonthlyPayment(vehicle)));
 
         ContractFileManager.saveContract(salesContract);
     }

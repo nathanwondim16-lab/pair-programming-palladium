@@ -38,7 +38,7 @@ public class DealershipFileManager
     public static void addVehicle(Vehicle vehicle)
     {
         try(PrintWriter writer = new PrintWriter(new FileWriter("data/inventory.csv", true))) {
-            writer.printf("%n%d|%d|%s|%s|%s|%s|%d|%f.2",
+            writer.printf("%n%d|%d|%s|%s|%s|%s|%d|%.2f",
                     vehicle.getVin(),
                     vehicle.getYear(),
                     vehicle.getMake(),
