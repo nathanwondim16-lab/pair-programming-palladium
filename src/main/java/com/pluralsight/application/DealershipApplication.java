@@ -26,39 +26,21 @@ public class DealershipApplication
         while(true)
         {
             int choice = UserInterface.getHomeScreenSelection(dealership);
-
-            switch (choice)
-            {
-                case 1:
-                    displayAllVehicles();
-                    break;
-                case 2:
-                    searchByPrice();
-                    break;
-                case 3:
-                    searchByYear();
-                    break;
-                case 4:
-                    searchByColor();
-                    break;
-                case 5:
-                    searchByMileage();
-                    break;
-                case 6:
-                    searchByVehicleType();
-                    break;
-                case 7:
-                    addVehicle();
-                    break;
-                case 8:
-                    sellVehicle();
-                    break;
-                case 9:
-                    leaseVehicle();
-                    break;
-                case 0:
+            switch (choice) {
+                case 1 -> displayAllVehicles();
+                case 2 -> searchByPrice();
+                case 3 -> searchByYear();
+                case 4 -> searchByColor();
+                case 5 -> searchByMileage();
+                case 6 -> searchByVehicleType();
+                case 7 -> addVehicle();
+                case 8 -> sellVehicle();
+                case 9 -> leaseVehicle();
+                case 0 -> {
                     UserInterface.endApplication();
                     System.exit(0);
+                }
+                default -> System.err.println("INVALID OPTION. PLEASE CHOOSE A VALID OPTION\n");
             }
         }
     }

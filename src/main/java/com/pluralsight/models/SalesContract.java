@@ -9,7 +9,6 @@ public class SalesContract extends Contract {
     private final double recordingFee;
     private final double processingFee;
     private boolean isFinance;
-    private double price;
 
     public SalesContract(LocalDate date, String customerName, String email, Vehicle vehicle, ContractType contractType,
                          double salesTaxAmount, double recordingFee, boolean isFinance) {
@@ -22,25 +21,18 @@ public class SalesContract extends Contract {
 
     @Override
     public double getTotalPrice() {
-        Vehicle vehicle = super.getVehicle();
+        double amountBeforeTax = super.getVehicle().getPrice() + recordingFee + processingFee;
 
-        System.out.println("Processing fee: " + processingFee);
-        this.price = salesTaxAmount + recordingFee + processingFee + vehicle.getPrice();
-
-        return price;
+        return amountBeforeTax + amountBeforeTax * salesTaxAmount;
     }
 
     @Override
     public double getTotalMonthlyPayment() {
-        Vehicle vehicle = super.getVehicle();
-
         if(isFinance) {
-            double annualRate = vehicle.getPrice() > 10000 ? .0425 : .0525;
-            int months = vehicle.getPrice() > 10000 ? 48 : 24;
+            double monthlyRate = super.getVehicle().getPrice() > 10000 ? .0425 / 12 : .0525 / 12;
+            int months = super.getVehicle().getPrice() > 10000 ? 48 : 24;
 
-            double monthlyRate = annualRate / 12;
-
-            return price * (monthlyRate * (Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
+            return getTotalPrice() * (monthlyRate * (Math.pow(1 + monthlyRate, months)) / (Math.pow(1 + monthlyRate, months) - 1));
         }
 
         return 0;

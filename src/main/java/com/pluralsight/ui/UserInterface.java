@@ -1,5 +1,6 @@
 package com.pluralsight.ui;
 
+import com.pluralsight.Enums.Colors;
 import com.pluralsight.models.Dealership;
 import com.pluralsight.models.Vehicle;
 
@@ -25,7 +26,7 @@ public class UserInterface
         System.out.println("4. Search by Color");
         System.out.println("5. Search by Mileage");
         System.out.println("6. Search by Vehicle Types");
-        System.out.println(ColorCodes.RED + "7. Add a vehicle" + ColorCodes.RESET);
+        System.out.println(Colors.RED.colorize("7. Add a vehicle"));
         System.out.println("8. Buy Vehicle");
         System.out.println("9. Lease Vehicle");
 

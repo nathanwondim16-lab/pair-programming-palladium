@@ -14,7 +14,7 @@ public enum Colors {
     GREEN(76, 175, 80),
     PURPLE(168, 85, 247),
     AMBER(255,191, 0),
-    CRIMSON(220, 20, 60),
+    RED(255, 0, 0),
     CHAMPAGNE_SILVER(210, 200, 190),
     MUTED_GRAY(156, 163, 175);
 
