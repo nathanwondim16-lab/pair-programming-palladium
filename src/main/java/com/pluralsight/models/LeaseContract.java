@@ -1,5 +1,7 @@
 package com.pluralsight.models;
 
+import com.pluralsight.Enums.ContractType;
+
 import java.time.LocalDate;
 
 public class LeaseContract extends Contract {
@@ -7,8 +9,8 @@ public class LeaseContract extends Contract {
     private final double leaseFee;
 
     public LeaseContract(LocalDate date, String customerName, String email, Vehicle vehicle,
-                         double expectedEndingValue, double leaseFee) {
-        super(date, customerName, email, vehicle);
+                         ContractType contractType, double expectedEndingValue, double leaseFee) {
+        super(date, customerName, email, vehicle, contractType);
         this.expectedEndingValue = expectedEndingValue;
         this.leaseFee = leaseFee;
 

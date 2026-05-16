@@ -10,13 +10,15 @@ public abstract class Contract {
     private String customerName;
     private String email;
     private Vehicle vehicle;
+    private final ContractType contractType;
 
 
-    public Contract(LocalDate date, String customerName, String email, Vehicle vehicle) {
+    public Contract(LocalDate date, String customerName, String email, Vehicle vehicle, ContractType contractType) {
         this.date = date;
         this.customerName = customerName;
         this.email = email;
         this.vehicle = vehicle;
+        this.contractType = contractType;
     }
 
     public Vehicle getVehicle() {
@@ -33,6 +35,10 @@ public abstract class Contract {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public ContractType getContractType() {
+        return contractType;
     }
 
     public void setVehicle(Vehicle vehicle) {

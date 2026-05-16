@@ -1,5 +1,6 @@
 package com.pluralsight.application;
 
+import com.pluralsight.Enums.ContractType;
 import com.pluralsight.io.ContractFileManager;
 import com.pluralsight.io.DealershipFileManager;
 import com.pluralsight.models.*;
@@ -169,7 +170,7 @@ public class DealershipApplication
         String userChoice = UserInterface.getUserInput("Do you want to finance the vehicle?");
 
         SalesContract salesContract = new SalesContract(LocalDate.now(), customerName, emailAddress, vehicle,
-                .05, 100, userChoice.equalsIgnoreCase("yes"));
+                ContractType.SALE, .05, 100, userChoice.equalsIgnoreCase("yes"));
 
         UserInterface.displayMessage(String.valueOf(salesContract.getTotalPrice(vehicle)));
         UserInterface.displayMessage(String.valueOf(salesContract.getTotalMonthlyPayment(vehicle)));
@@ -178,13 +179,13 @@ public class DealershipApplication
     }
 
     private void leaseVehicle() {
-        String customerName = UserInterface.getUserInput("Enter your name: ");
+        String customerName = UserInterface.getUserInput("\nEnter your name: ");
         String emailAddress = UserInterface.getUserInput("Enter your email: ");
-        int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number");
+        int VIN = UserInterface.getUserInputInt("Enter the Vehicle's Vin number: ");
         Vehicle vehicle = dealership.getVehicleByVin(VIN);
 
         LeaseContract leaseContract = new LeaseContract(LocalDate.now(), customerName, emailAddress,
-                vehicle, .50, .07);
+                vehicle, ContractType.LEASE, .50, .07);
 
         ContractFileManager.saveContract(leaseContract);
     }

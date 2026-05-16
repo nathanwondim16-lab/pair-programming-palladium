@@ -1,5 +1,7 @@
 package com.pluralsight.models;
 
+import com.pluralsight.Enums.ContractType;
+
 import java.time.LocalDate;
 
 public class SalesContract extends Contract {
@@ -9,9 +11,9 @@ public class SalesContract extends Contract {
     private boolean isFinance;
     private double price;
 
-    public SalesContract(LocalDate date, String customerName, String email, Vehicle vehicle,
+    public SalesContract(LocalDate date, String customerName, String email, Vehicle vehicle, ContractType contractType,
                          double salesTaxAmount, double recordingFee, boolean isFinance) {
-        super(date, customerName, email, vehicle);
+        super(date, customerName, email, vehicle, contractType);
         this.salesTaxAmount = salesTaxAmount;
         this.recordingFee = recordingFee;
         this.isFinance = isFinance;

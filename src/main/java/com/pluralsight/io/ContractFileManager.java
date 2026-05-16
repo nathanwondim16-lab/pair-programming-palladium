@@ -22,13 +22,8 @@ public class ContractFileManager {
                 writer.println();
             }
 
-            if(contract instanceof SalesContract) {
-                writer.write("SALE|");
-            } else {
-                writer.write("LEASE|");
-            }
-
-            writer.printf("%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|",
+            writer.printf("%s|%s|%s|%s|%d|%d|%s|%s|%s|%s|%d|%.2f|",
+                    contract.getContractType(),
                     contract.getDate(),
                     contract.getCustomerName(),
                     contract.getEmail(),
@@ -64,6 +59,4 @@ public class ContractFileManager {
             System.err.println(e.getMessage());
         }
     }
-
-
 }
